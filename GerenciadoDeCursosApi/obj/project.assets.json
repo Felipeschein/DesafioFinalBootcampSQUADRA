@@ -7341,9 +7341,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadoDeCursosApi\\GerenciadoDeCursosApi\\GerenciadoDeCursosApi.csproj",
-      "projectName": "GerenciadoDeCursosApi",
-      "projectPath": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadoDeCursosApi\\GerenciadoDeCursosApi\\GerenciadoDeCursosApi.csproj",
+      "projectUniqueName": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadoDeCursosApi\\GerenciadoDeCursosApi\\GerenciadorDeCursosApi.csproj",
+      "projectName": "GerenciadorDeCursosApi",
+      "projectPath": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadoDeCursosApi\\GerenciadoDeCursosApi\\GerenciadorDeCursosApi.csproj",
       "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadoDeCursosApi\\GerenciadoDeCursosApi\\obj\\",
       "projectStyle": "PackageReference",

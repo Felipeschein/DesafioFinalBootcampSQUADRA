@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "GerenciadoDeCursosApi": {
+    "GerenciadorDeCursosApi": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

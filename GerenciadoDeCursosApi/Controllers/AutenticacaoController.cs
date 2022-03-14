@@ -1,15 +1,10 @@
-﻿using GerenciadoDeCursosApi.Data;
-using GerenciadoDeCursosApi.Models;
-using GerenciadoDeCursosApi.Services;
-using Microsoft.AspNetCore.Http;
+﻿using GerenciadorDeCursosApi.Data;
+using GerenciadorDeCursosApi.Models;
+using GerenciadorDeCursosApi.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace GerenciadoDeCursosApi.Controllers
+namespace GerenciadorDeCursosApi.Controllers
 {
 
     [Route("api/[controller]")]
@@ -25,7 +20,7 @@ namespace GerenciadoDeCursosApi.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public async Task<ActionResult<dynamic>> AutenticacaoUsuario ([FromBody] UsuariosModel usuariosModel)
+        public async Task<ActionResult<dynamic>> AutenticacaoUsuario ([FromBody] UsuarioModel usuariosModel)
         {
             // Recupera o usuário
             var user = await _context.UsuariosModels.FindAsync(usuariosModel.Id);
@@ -36,7 +31,7 @@ namespace GerenciadoDeCursosApi.Controllers
                 return NotFound(new { message = "Usuário ou senha inválidos" });
 
             // Gera o Token
-            var token = TokenServices.GenerateToken(usuariosModel);
+            var token = TokenServices.GerarToken(usuariosModel);
 
             // Retorna os dados
             return new

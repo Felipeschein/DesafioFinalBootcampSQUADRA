@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace GerenciadoDeCursosApi
+namespace GerenciadorDeCursosApi
 {
     public class Program
     {

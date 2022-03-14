@@ -1,11 +1,7 @@
-﻿using GerenciadoDeCursosApi.Models;
+﻿using GerenciadorDeCursosApi.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace GerenciadoDeCursosApi.Data
+namespace GerenciadorDeCursosApi.Data
 {
     public class GerenciadorDeCursosContext : DbContext
     {
@@ -14,13 +10,13 @@ namespace GerenciadoDeCursosApi.Data
 
         }
 
-        public DbSet<CursosModel> CursosModels { get; set; }
-        public DbSet<UsuariosModel> UsuariosModels { get; set; }
+        public DbSet<CursoModel> CursosModels { get; set; }
+        public DbSet<UsuarioModel> UsuariosModels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<CursosModel>(e => 
+            modelBuilder.Entity<CursoModel>(e => 
             {
                 e.ToTable("Cursos");
                 e.HasKey(p => p.Id);
@@ -30,7 +26,7 @@ namespace GerenciadoDeCursosApi.Data
 
             });
 
-            modelBuilder.Entity<UsuariosModel>(e => {
+            modelBuilder.Entity<UsuarioModel>(e => {
                 e.ToTable("Usuarios");
                 e.HasKey(p => p.Id);
                 e.Property(p => p.Login).HasColumnType("varchar(40)").IsRequired();

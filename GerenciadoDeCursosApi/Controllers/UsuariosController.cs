@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using GerenciadoDeCursosApi.Data;
-using GerenciadoDeCursosApi.Models;
+using GerenciadorDeCursosApi.Data;
+using GerenciadorDeCursosApi.Models;
 
-namespace GerenciadoDeCursosApi.Controllers
+namespace GerenciadorDeCursosApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,13 +20,13 @@ namespace GerenciadoDeCursosApi.Controllers
         }
 
         [HttpGet("ListaDeUsuarios")]
-        public async Task<ActionResult<IEnumerable<UsuariosModel>>> GetUsuariosModels()
+        public async Task<ActionResult<IEnumerable<UsuarioModel>>> GetUsuariosModels()
         {
             return await _context.UsuariosModels.ToListAsync();
         }
 
         [HttpGet("ListaDeUsuarios{id}")]
-        public async Task<ActionResult<UsuariosModel>> ListaUsuariosModelAsync(int id)
+        public async Task<ActionResult<UsuarioModel>> ListaUsuariosModelAsync(int id)
         {
             var usuariosModel = await _context.UsuariosModels.FindAsync(id);
 
@@ -42,7 +40,7 @@ namespace GerenciadoDeCursosApi.Controllers
 
 
         [HttpPut("AtualizarUsuario{id}")]
-        public async Task<IActionResult> AtualizaUsuariosModelAsync(int id, UsuariosModel usuariosModel)
+        public async Task<IActionResult> AtualizaUsuariosModelAsync(int id, UsuarioModel usuariosModel)
         {
             if (id != usuariosModel.Id)
             {
@@ -72,7 +70,7 @@ namespace GerenciadoDeCursosApi.Controllers
 
 
         [HttpPost("CadastrarUsuarios")]
-        public async Task<ActionResult<UsuariosModel>> CadastrarUsuariosModelAsync(UsuariosModel usuariosModel)
+        public async Task<ActionResult<UsuarioModel>> CadastrarUsuariosModelAsync(UsuarioModel usuariosModel)
         {
             _context.UsuariosModels.Add(usuariosModel);
             await _context.SaveChangesAsync();

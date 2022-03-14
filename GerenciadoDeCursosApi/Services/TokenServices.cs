@@ -1,18 +1,17 @@
-﻿using GerenciadoDeCursosApi.Models;
+﻿using GerenciadorDeCursosApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace GerenciadoDeCursosApi.Services
+
+namespace GerenciadorDeCursosApi.Services
 {
     public class TokenServices
     {
-        public static string GenerateToken (UsuariosModel usuario)
+        public static string GerarToken (UsuarioModel usuario)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(Settings.Secret);

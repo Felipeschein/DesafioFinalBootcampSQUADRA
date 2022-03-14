@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using GerenciadoDeCursosApi.Data;
-using GerenciadoDeCursosApi.Models;
+using GerenciadorDeCursosApi.Data;
+using GerenciadorDeCursosApi.Models;
 using Microsoft.AspNetCore.Authorization;
 
-namespace GerenciadoDeCursosApi.Controllers
+namespace GerenciadorDeCursosApi.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
@@ -24,14 +22,14 @@ namespace GerenciadoDeCursosApi.Controllers
         }
         [AllowAnonymous]
         [HttpGet("ListaDeCursos")]
-        public async Task<ActionResult<IEnumerable<CursosModel>>> ListarCursosAsync ()
+        public async Task<ActionResult<IEnumerable<CursoModel>>> ListarCursosAsync ()
         {
             return await _context.CursosModels.ToListAsync();
         }
 
         [AllowAnonymous]
         [HttpGet("ListaDeCursos{status}")]
-        public async Task<List<CursosModel>> ListaCursosStatusAsync (string status)
+        public async Task<List<CursoModel>> ListaCursosStatusAsync (string status)
         {
 
             var cursosModel = await _context.CursosModels.Where(m => m.Status == status).ToListAsync();
@@ -41,7 +39,7 @@ namespace GerenciadoDeCursosApi.Controllers
 
         [Authorize(Roles = "Secretaria, Gerente")]
         [HttpPut("AtualizarCurso{id}")]
-        public async Task<IActionResult> AtualizarCursosAsync(int id, CursosModel cursosModel)
+        public async Task<IActionResult> AtualizarCursosAsync(int id, CursoModel cursosModel)
         {
             if (id != cursosModel.Id)
             {
@@ -71,7 +69,7 @@ namespace GerenciadoDeCursosApi.Controllers
         [Authorize(Roles = "Gerente")]
         [HttpPost("CadastrarCursos")]
         [ActionName(nameof(CadastrarCursosAsync))]
-        public async Task<ActionResult<CursosModel>> CadastrarCursosAsync([FromBody] CursosModel cursosModel)
+        public async Task<ActionResult<CursoModel>> CadastrarCursosAsync([FromBody] CursoModel cursosModel)
         {
             _context.CursosModels.Add(cursosModel);
             await _context.SaveChangesAsync();
