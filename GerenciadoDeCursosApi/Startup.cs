@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace GerenciadorDeCursosApi
 {
@@ -75,6 +76,10 @@ namespace GerenciadorDeCursosApi
                     }
                 });
             });
+            services.AddControllers().AddJsonOptions(x =>
+            {
+                x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,7 +89,7 @@ namespace GerenciadorDeCursosApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "GerenciadorDeCursosApi v1"));
             }
-
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

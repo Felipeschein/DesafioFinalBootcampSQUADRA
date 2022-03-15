@@ -20,57 +20,14 @@ namespace GerenciadorDeCursosApi.Controllers
         }
 
         [HttpGet("ListaDeUsuarios")]
-        public async Task<ActionResult<IEnumerable<UsuarioModel>>> GetUsuariosModels()
+        public async Task<ActionResult<IEnumerable<UsuarioModel>>> ListaUsuariosAsync()
         {
             return await _context.UsuariosModels.ToListAsync();
         }
 
-        [HttpGet("ListaDeUsuarios{id}")]
-        public async Task<ActionResult<UsuarioModel>> ListaUsuariosModelAsync(int id)
-        {
-            var usuariosModel = await _context.UsuariosModels.FindAsync(id);
-
-            if (usuariosModel == null)
-            {
-                return NotFound();
-            }
-
-            return usuariosModel;
-        }
-
-
-        [HttpPut("AtualizarUsuario{id}")]
-        public async Task<IActionResult> AtualizaUsuariosModelAsync(int id, UsuarioModel usuariosModel)
-        {
-            if (id != usuariosModel.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(usuariosModel).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UsuariosModelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
 
         [HttpPost("CadastrarUsuarios")]
-        public async Task<ActionResult<UsuarioModel>> CadastrarUsuariosModelAsync(UsuarioModel usuariosModel)
+        public async Task<ActionResult<UsuarioModel>> CadastrarUsuariosAsync(UsuarioModel usuariosModel)
         {
             _context.UsuariosModels.Add(usuariosModel);
             await _context.SaveChangesAsync();
@@ -79,7 +36,7 @@ namespace GerenciadorDeCursosApi.Controllers
         }
 
         [HttpDelete("ExcluirUsuarios{id}")]
-        public async Task<IActionResult> DeleteUsuariosModelAsync(int id)
+        public async Task<IActionResult> ExcluirUsuariosAsync(int id)
         {
             var usuariosModel = await _context.UsuariosModels.FindAsync(id);
             if (usuariosModel == null)

@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using GerenciadorDeCursosApi.Data;
+﻿using GerenciadorDeCursosApi.Data;
+using GerenciadorDeCursosApi.DTOs;
+using GerenciadorDeCursosApi.Enum;
 using GerenciadorDeCursosApi.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace GerenciadorDeCursosApi.Controllers
 {
@@ -22,55 +23,38 @@ namespace GerenciadorDeCursosApi.Controllers
         }
         [AllowAnonymous]
         [HttpGet("ListaDeCursos")]
-        public async Task<ActionResult<IEnumerable<CursoModel>>> ListarCursosAsync ()
+        public IEnumerable<CursoModel> ListarCursos ()
         {
-            return await _context.CursosModels.ToListAsync();
+
+            return _context.CursosModels.ToList();
+
         }
 
         [AllowAnonymous]
         [HttpGet("ListaDeCursos{status}")]
-        public async Task<List<CursoModel>> ListaCursosStatusAsync (string status)
+        public List<CursoModel> ListarCursosStatus (StatusEnum status)
         {
+            var cursosStatus = _context.CursosModels.Where(s => s.Status == status).ToList();
+            return cursosStatus;
 
-            var cursosModel = await _context.CursosModels.Where(m => m.Status == status).ToListAsync();
-
-            return cursosModel;
         }
-
         [Authorize(Roles = "Secretaria, Gerente")]
         [HttpPut("AtualizarCurso{id}")]
-        public async Task<IActionResult> AtualizarCursosAsync(int id, CursoModel cursosModel)
+        public ActionResult<CursoModel> AtualizarCursos (int id, AtualizarCursoDTO cursosModel)
         {
-            if (id != cursosModel.Id)
-            {
-                return BadRequest();
-            }
 
-            _context.Entry(cursosModel).State = EntityState.Modified;
+            var curso = _context.CursosModels.Find(id);
+            curso.Status = cursosModel.Status;
+            _context.SaveChanges();
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CursosModelExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return Ok(curso);
         }
         [Authorize(Roles = "Gerente")]
         [HttpPost("CadastrarCursos")]
         [ActionName(nameof(CadastrarCursosAsync))]
-        public async Task<ActionResult<CursoModel>> CadastrarCursosAsync([FromBody] CursoModel cursosModel)
+        public async Task<ActionResult<CursoModel>> CadastrarCursosAsync ([FromBody] CursoModel cursosModel)
         {
+
             _context.CursosModels.Add(cursosModel);
             await _context.SaveChangesAsync();
 
@@ -78,7 +62,7 @@ namespace GerenciadorDeCursosApi.Controllers
         }
         [Authorize(Roles = "Gerente")]
         [HttpDelete("ExcluirCursos{id}")]
-        public async Task<IActionResult> ExcluirCursosAsync(int id)
+        public async Task<IActionResult> ExcluirCursosAsync (int id)
         {
             var cursosModel = await _context.CursosModels.FindAsync(id);
             if (cursosModel == null)
@@ -92,7 +76,7 @@ namespace GerenciadorDeCursosApi.Controllers
             return NoContent();
         }
 
-        private bool CursosModelExists(int id)
+        private bool CursosModelExists (int id)
         {
             return _context.CursosModels.Any(e => e.Id == id);
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pJpenmkbigkA/oNgag+ubJ1QVTIA++diexqLXRg7U+xuQhY6powL71a+hti4GPQGr7PD8DfJ6f179O0wqkwfCg==",
+  "dgSpecHash": "A42sqw2/3DbDUPaXUJXOTF7pysKsw8lh0PR0x+6o8+yl3hxExBBsgAycCw27AB2uiudZuPKEdiHbkUrZsBHyKw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadoDeCursosApi\\GerenciadoDeCursosApi\\GerenciadorDeCursosApi.csproj",
+  "projectFilePath": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadorDeCursosApi\\GerenciadoDeCursosApi\\GerenciadorDeCursosApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\felip\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\felip\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.15\\microsoft.aspnetcore.authentication.jwtbearer.5.0.15.nupkg.sha512",

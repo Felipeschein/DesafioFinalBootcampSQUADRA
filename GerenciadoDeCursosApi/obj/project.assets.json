@@ -7341,11 +7341,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadoDeCursosApi\\GerenciadoDeCursosApi\\GerenciadorDeCursosApi.csproj",
+      "projectUniqueName": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadorDeCursosApi\\GerenciadoDeCursosApi\\GerenciadorDeCursosApi.csproj",
       "projectName": "GerenciadorDeCursosApi",
-      "projectPath": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadoDeCursosApi\\GerenciadoDeCursosApi\\GerenciadorDeCursosApi.csproj",
+      "projectPath": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadorDeCursosApi\\GerenciadoDeCursosApi\\GerenciadorDeCursosApi.csproj",
       "packagesPath": "C:\\Users\\felip\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadoDeCursosApi\\GerenciadoDeCursosApi\\obj\\",
+      "outputPath": "C:\\Users\\felip\\Desktop\\Desafio Final\\GerenciadorDeCursosApi\\GerenciadoDeCursosApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -20,7 +20,7 @@ namespace GerenciadorDeCursosApi.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public async Task<ActionResult<dynamic>> AutenticacaoUsuario ([FromBody] UsuarioModel usuariosModel)
+        public async Task<ActionResult<dynamic>> AutenticacaoUsuarioAsync ([FromBody] UsuarioModel usuariosModel)
         {
             // Recupera o usuário
             var user = await _context.UsuariosModels.FindAsync(usuariosModel.Id);
