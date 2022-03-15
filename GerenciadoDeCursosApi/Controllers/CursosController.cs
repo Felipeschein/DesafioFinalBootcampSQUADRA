@@ -21,25 +21,21 @@ namespace GerenciadorDeCursosApi.Controllers
         {
             _context = context;
         }
+
         [AllowAnonymous]
         [HttpGet("ListaDeCursos")]
-        public IEnumerable<CursoModel> ListarCursos ()
+        public List<CursoModel> ListarCursosStatus (StatusEnum? status)
         {
-
-            return _context.CursosModels.ToList();
-
-        }
-
-        [AllowAnonymous]
-        [HttpGet("ListaDeCursos{status}")]
-        public List<CursoModel> ListarCursosStatus (StatusEnum status)
-        {
+            if (status == null)
+            {
+                return _context.CursosModels.ToList();
+            }
             var cursosStatus = _context.CursosModels.Where(s => s.Status == status).ToList();
             return cursosStatus;
 
         }
         [Authorize(Roles = "Secretaria, Gerente")]
-        [HttpPut("AtualizarCurso{id}")]
+        [HttpPut("AtualizarCurso/{id}")]
         public ActionResult<CursoModel> AtualizarCursos (int id, AtualizarCursoDTO cursosModel)
         {
 
@@ -61,7 +57,7 @@ namespace GerenciadorDeCursosApi.Controllers
             return CreatedAtAction("CadastrarCursosAsync", new { id = cursosModel.Id }, cursosModel);
         }
         [Authorize(Roles = "Gerente")]
-        [HttpDelete("ExcluirCursos{id}")]
+        [HttpDelete("ExcluirCursos{id}/")]
         public async Task<IActionResult> ExcluirCursosAsync (int id)
         {
             var cursosModel = await _context.CursosModels.FindAsync(id);
